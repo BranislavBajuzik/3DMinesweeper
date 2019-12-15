@@ -19,12 +19,12 @@ setblock -9 68 -27 redstone_block
 setblock -9 68 -9 redstone_block
 
 # Tp the bombs
-execute as @e[x=-22,y=100,z=-39,dx=14,dy=1,dz=14] at @s run teleport ~15 ~-15 ~32
-execute as @e[x=-7,y=100,z=-24,dx=14,dy=15,dz=14] at @s run teleport 8 ~-30 ~17
-execute as @e[x=-22,y=100,z=-24,dx=14,dy=1,dz=14] at @s run teleport ~15 ~-31 ~17
-execute as @e[x=8,y=100,z=-39,dx=14,dy=15,dz=14] at @s run teleport -8 ~-30 ~32
-execute as @e[x=-7,y=100,z=-39,dx=14,dy=15,dz=14] at @s run teleport ~ ~-30 -8
-execute as @e[x=8,y=100,z=-24,dx=14,dy=15,dz=14] at @s run teleport ~-15 ~-30 8
+execute as @e[x=-22,y=100,z=-79,dx=14,dy=1,dz=14] at @s run teleport ~15 ~-15 ~72
+execute as @e[x=-7,y=100,z=-64,dx=14,dy=15,dz=14] at @s run teleport 8 ~-30 ~57
+execute as @e[x=-22,y=100,z=-64,dx=14,dy=1,dz=14] at @s run teleport ~15 ~-31 ~57
+execute as @e[x=8,y=100,z=-79,dx=14,dy=15,dz=14] at @s run teleport -8 ~-30 ~72
+execute as @e[x=-7,y=100,z=-79,dx=14,dy=15,dz=14] at @s run teleport ~ ~-30 -8
+execute as @e[x=8,y=100,z=-64,dx=14,dy=15,dz=14] at @s run teleport ~-15 ~-30 8
 execute at @e[type=area_effect_cloud,tag=Mine] if block ~ ~ ~ cyan_wool run setblock ~ ~ ~ brown_wool
 execute as @e[type=area_effect_cloud,tag=Mine] at @s run teleport ~ ~0.5 ~
 
