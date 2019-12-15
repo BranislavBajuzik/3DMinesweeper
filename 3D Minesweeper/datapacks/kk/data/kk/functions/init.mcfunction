@@ -1,3 +1,8 @@
+# Called by
+# - ez
+# - medium
+# - hard
+
 gamemode adventure @a
 clear @a
 teleport @p 0 108.0 0

@@ -1,3 +1,6 @@
+# Called by
+# - main
+
 clear @p
 difficulty peaceful
 gamemode adventure @a

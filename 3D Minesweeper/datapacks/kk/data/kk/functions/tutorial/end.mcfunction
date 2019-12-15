@@ -1,3 +1,7 @@
+# Called by
+# - main
+# - tutorial/10
+
 clear @p
 kill @e[type=area_effect_cloud,tag=tutorial]
 scoreboard players set @p fakeMines 0

@@ -1,3 +1,6 @@
+# Called by
+# - tick.json
+
 # Setup
 teleport @p[scores={death=..49}] 0 108.0 0
 execute as @p[scores={death=50}] run function kk:init_player

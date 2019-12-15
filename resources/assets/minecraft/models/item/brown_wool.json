@@ -1,0 +1,17 @@
+{
+"textures": {
+        "k": "block/hopper_top"
+},
+"elements":[
+        {"type":"cube",
+        "from":[1,1,1],
+        "to":[2,2,2],
+        "faces":
+                {"down":{"uv":[1,1,1,1],"texture":"#k"},
+                "up":{"uv":[1,1,1,1],"texture":"#k"},
+                "north":{"uv":[1,1,1,1],"texture":"#k"},
+                "south":{"uv":[1,1,1,1],"texture":"#k"},
+                "west":{"uv":[1,1,1,1],"texture":"#k"},
+                "east":{"uv":[1,1,1,1],"texture":"#k"}}}
+        ]
+}
