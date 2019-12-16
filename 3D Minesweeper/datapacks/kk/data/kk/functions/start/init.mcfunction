@@ -1,7 +1,7 @@
 # Called by
-# - ez
-# - medium
-# - hard
+# - start/ez
+# - start/medium
+# - start/hard
 
 gamemode adventure @a
 clear @a

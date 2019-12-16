@@ -10,9 +10,9 @@ tag @p[gamemode=!adventure] add cheater
 
 # Triggers
 scoreboard players enable @p trigger
-execute as @p[scores={trigger=1}] run function kk:ez
-execute as @p[scores={trigger=2}] run function kk:medium
-execute as @p[scores={trigger=3}] run function kk:hard
+execute as @p[scores={trigger=1}] run function kk:start/ez
+execute as @p[scores={trigger=2}] run function kk:start/medium
+execute as @p[scores={trigger=3}] run function kk:start/hard
 execute as @p[scores={trigger=4}] run function kk:tutorial/init
 execute as @p[scores={trigger=5}] run function kk:bonus
 execute as @p[scores={trigger=6}] run function kk:tutorial/end
@@ -30,13 +30,13 @@ execute as @p[scores={shift=1..}] at @s run function kk:shift
 execute as @p[x=-6.5,y=102,z=-6.5,dx=16,dy=10,dz=16] at @s run function kk:fly_barrier
 
 # Give items
-execute as @p[scores={mode=0..},nbt=!{SelectedItem:{id:"minecraft:written_book"}}] if block -14 55 -6 clay run function kk:give_items
+execute as @p[scores={mode=0..},nbt=!{SelectedItem:{id:"minecraft:written_book"}}] if block -14 55 -6 clay run function kk:items/give
 
 # Register items
-execute as @e[type=item] at @s run function kk:register_items
+execute as @e[type=item] at @s run function kk:items/register
 
 # Events
-execute as @p[scores={hopper=1..}] at @s run function kk:hopper
+execute as @p[scores={hopper=1..}] at @s run function kk:flag/button
 execute at @e[scores={glass=1}] run summon armor_stand ~ ~-30 ~ {Marker:1,Invisible:1,CustomName:"\"Phill\"",NoGravity:1}
 execute at @p[tag=generated] as @e[scores={glass=1}] run function kk:click
 scoreboard players set @p[tag=!generated] timer 0

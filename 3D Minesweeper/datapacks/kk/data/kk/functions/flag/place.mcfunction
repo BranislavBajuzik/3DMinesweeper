@@ -1,5 +1,5 @@
 # Called by
-# - events
+# - flag/events
 
 execute at @e[type=armor_stand,name=Flag] run setblock ~ ~30 ~ purple_wool
 tag @p remove flag

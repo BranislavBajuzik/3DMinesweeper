@@ -7,7 +7,7 @@ gamemode adventure @a
 scoreboard players set @p mode -1
 scoreboard players set @p flyBool 0
 scoreboard players set @p boolBool 0
-function kk:give_basic_items
+function kk:items/give_basic
 title @p title {"color":"dark_blue","text":"3D Minesweeper"}
 title @p subtitle [{"color":"dark_blue","text":"By "},{"color":"gold","text":"TheAl_T"}]
 # Welcome message

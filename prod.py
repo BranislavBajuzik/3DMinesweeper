@@ -75,6 +75,6 @@ if __name__ == "__main__":
         release.make_base_archive().add_mixin()
 
     print("\nCopying resources")
-    os.replace("resources.zip", BUILD_FOLDER / "resourcesR.zip")
+    os.replace("resources.zip", BUILD_FOLDER / "resources.zip")
 
     print("\nAll done!")

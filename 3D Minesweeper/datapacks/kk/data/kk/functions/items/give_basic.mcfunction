@@ -1,6 +1,6 @@
 # Called by
 # - init_player
-# - end
+# - tutorial/end
 # - endgame
 # - lost/2
 

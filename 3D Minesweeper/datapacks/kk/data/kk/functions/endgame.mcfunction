@@ -9,4 +9,4 @@ title @s title {"color":"dark_green","text":"You won!"}
 clear @s
 function kk:highscores
 tellraw @p [{"color":"gray","text":"You can view your last score ("},{"color":"gold","score":{"objective":"lastTime","name":"@s"}},{"color":"gray","text":") by pressing tab.\n"},"If you have a better score (and a video proof), feel free to send me a ",{"hoverEvent":{"action":"show_text","value":"Click!"},"text":"message","clickEvent":{"action":"open_url","value":"http://www.planetminecraft.com/project/3d-minesweeper-in-minecraft-3298593/"},"underlined":"true","color":"blue"}," and your name will be here."]
-function kk:give_basic_items
+function kk:items/give_basic
