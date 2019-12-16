@@ -46,9 +46,16 @@ class Release:
     def add_mixin(self) -> "Release":
         for root, dirs, files in os.walk(Path("Mixin", self.typ)):
             for file in chain(files, dirs):
-                self.__zip.write(
-                    Path(root, file), arcname=Path("3D Minesweeper", "datapacks", "kk", "data", "kk", "functions", file)
-                )
+                root = Path(root)
+                path = root / file
+
+                if path.is_dir():
+                    try:
+                        self.__zip.getinfo(path)
+                    except KeyError:
+                        continue
+
+                self.__zip.write(path, arcname=Path("3D Minesweeper", "datapacks", "kk", "data", *root.parts[2:], file))
 
         return self
 
