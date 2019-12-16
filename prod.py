@@ -1,39 +1,59 @@
 import os
 
+from time import time
 from pathlib import Path
 from itertools import chain
 from zipfile import ZipFile
 
 
 BUILD_FOLDER = Path("build")
+BUILD_FOLDER.mkdir(parents=True, exist_ok=True)
 
 
-def archive(suffix):
-    BUILD_FOLDER.mkdir(parents=True, exist_ok=True)
+class Release:
+    __zip: ZipFile
+    __time: float
 
-    with ZipFile(BUILD_FOLDER / f"3D Minesweeper{suffix}.zip", "w", compresslevel=9) as target:
+    def __init__(self, typ):
+        self.typ = typ
+
+    def __enter__(self):
+        print(f"\nAssembling {self.typ} release")
+        self.__time = time()
+        self.__zip = ZipFile(BUILD_FOLDER / f"3D Minesweeper{self.typ}.zip", "w", compresslevel=9)
+
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.__zip.close()
+        print(f" - Done in {time()-self.__time:.2f}s")
+
+        return False
+
+    def make_base_archive(self) -> "Release":
         for root, dirs, files in os.walk("3D Minesweeper"):
             for file in chain(files, dirs):
-                target.write(Path(root, file))
+                self.__zip.write(Path(root, file))
 
-        target.write(
-            f"fly_barrier{suffix}.mcfunction",
-            arcname=Path("3D Minesweeper", "datapacks", "kk", "data", "kk", "functions", "fly_barrier.mcfunction"),
-        )
+        return self
 
-
-def add_assets():
-    with ZipFile(BUILD_FOLDER / "3D Minesweeper.zip", "a", compresslevel=9) as target:
+    def add_assets(self) -> "Release":
         for asset in ("icon.png", "resources.zip"):
-            target.write(asset, arcname=Path("3D Minesweeper", asset))
+            self.__zip.write(asset, arcname=Path("3D Minesweeper", asset))
 
-        target.write(
-            f"prod.mcfunction",
-            arcname=Path("3D Minesweeper", "datapacks", "kk", "data", "kk", "functions", "prod.mcfunction"),
-        )
+        return self
+
+    def add_mixin(self) -> "Release":
+        for root, dirs, files in os.walk(Path("Mixin", self.typ)):
+            for file in chain(files, dirs):
+                self.__zip.write(
+                    Path(root, file), arcname=Path("3D Minesweeper", "datapacks", "kk", "data", "kk", "functions", file)
+                )
+
+        return self
 
 
-def make_assets():
+def make_assets() -> None:
     with ZipFile("resources.zip", "w", compresslevel=9) as target:
         for root, dirs, files in os.walk("resources"):
             for file in chain(files, dirs):
@@ -45,12 +65,16 @@ if __name__ == "__main__":
     print("Archiving resources")
     make_assets()
 
-    print("Assembling public release")
-    archive("")
-    add_assets()
+    with Release("Public") as release:
+        release.make_base_archive().add_mixin().add_assets()
 
-    print("Assembling Realms release")
-    archive("R")
+    with Release("Develop") as release:
+        release.make_base_archive().add_mixin().add_assets()
+
+    with Release("Realms") as release:
+        release.make_base_archive().add_mixin()
+
+    print("\nCopying resources")
     os.replace("resources.zip", BUILD_FOLDER / "resourcesR.zip")
 
-    print("Done!")
+    print("\nAll done!")
