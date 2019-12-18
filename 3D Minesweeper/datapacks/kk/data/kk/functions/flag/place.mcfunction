@@ -1,6 +1,7 @@
 # Called by
 # - flag/events
 
+# ToDo play a sound
 execute at @e[type=armor_stand,name=Flag] run setblock ~ ~30 ~ purple_wool
 tag @p remove flag
 execute as @e[type=armor_stand,name=Flag] at @s if block ~ ~ ~ brown_wool run tag @p add flag

@@ -1,5 +1,6 @@
 import os
 
+from nbt import nbt
 from time import time
 from pathlib import Path
 from itertools import chain
@@ -60,6 +61,17 @@ class Release:
         return self
 
 
+def clean_nbt() -> None:
+    level = nbt.NBTFile("3D Minesweeper/level.dat", 'rb')
+
+    try:
+        del level["Data"]["Player"]
+    except KeyError:
+        pass
+
+    level.write_file()
+
+
 def make_assets() -> None:
     with ZipFile("resources.zip", "w", compresslevel=9) as target:
         for root, dirs, files in os.walk("resources"):
@@ -71,6 +83,9 @@ def make_assets() -> None:
 if __name__ == "__main__":
     print("Archiving resources")
     make_assets()
+
+    print("Cleaning up level.dat")
+    clean_nbt()
 
     with Release("Public") as release:
         release.make_base_archive().add_mixin().add_assets()
