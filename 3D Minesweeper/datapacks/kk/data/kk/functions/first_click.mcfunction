@@ -3,12 +3,12 @@
 # - 14 48 -7
 
 clear @p
-setblock -14 55 -6 stone
+tag @p remove items
 tag @p remove click
 execute at @e[type=armor_stand,name=Phill] if block ~ ~ ~ cyan_wool run tag @p add click
 
 tag @p[tag=click] add generated
-execute as @p[tag=click] run setblock -14 55 -6 clay
+execute as @p[tag=click] run tag @p add items
 execute as @p[tag=click] at @s run function kk:fill
 
 execute as @p[tag=!click] run teleport @e[type=area_effect_cloud,tag=Mine] 0.5 253.0 0.5

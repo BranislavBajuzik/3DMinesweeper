@@ -30,7 +30,7 @@ execute as @p[scores={shift=1..}] at @s run function kk:shift
 execute as @p[x=-6.5,y=102,z=-6.5,dx=16,dy=10,dz=16] at @s run function kk:fly_barrier
 
 # Give items
-execute as @p[scores={mode=0..},nbt=!{SelectedItem:{id:"minecraft:written_book"}}] if block -14 55 -6 clay run function kk:items/give
+execute as @p[scores={mode=0..},tag=items,nbt=!{SelectedItem:{id:"minecraft:written_book"}}] run function kk:items/give
 
 # Register items
 execute as @e[type=item] at @s run function kk:items/register

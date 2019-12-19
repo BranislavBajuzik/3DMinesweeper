@@ -16,7 +16,7 @@ execute at @e[type=armor_stand,name=Phill] run clone ~ ~ ~ ~ ~ ~ ~ ~30 ~
 kill @e[type=armor_stand,name=Phill]
 execute as @e[name=NewPhill] run data merge entity @s {CustomName:"\"Phill\""}
 
-setblock -14 55 -6 clay
-execute at @e[type=armor_stand,name=Phill,limit=1,sort=nearest] run setblock -14 55 -6 stone
+tag @p add items
+execute at @e[type=armor_stand,name=Phill,limit=1,sort=nearest] run tag @p remove items
 # kk:fill
 execute at @e[type=armor_stand,name=Phill,limit=1,sort=nearest] run data merge block 0 48 -7 {auto:1b}
