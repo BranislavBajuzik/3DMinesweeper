@@ -36,7 +36,7 @@ execute as @p[scores={mode=0..},tag=items,nbt=!{SelectedItem:{id:"minecraft:writ
 execute as @e[type=item] at @s run function kk:items/register
 
 # Events
-execute as @p[scores={hopper=1..}] at @s run function kk:flag/button
+execute as @p[scores={button=1..}] at @s run function kk:flag/button
 execute at @e[scores={glass=1}] run summon armor_stand ~ ~-30 ~ {Marker:1,Invisible:1,CustomName:"\"Phill\"",NoGravity:1}
 execute at @p[tag=generated] as @e[scores={glass=1}] run function kk:click
 scoreboard players set @p[tag=!generated] timer 0
