@@ -2,7 +2,7 @@
 # - tick.json
 
 # Setup
-teleport @p[scores={death=..49}] 0 108.0 0
+teleport @p[scores={death=..49}] 0 108.0 0 0 0
 execute as @p[scores={death=50}] run function kk:init_player
 tag @p[gamemode=adventure] remove cheater
 tellraw @p[gamemode=!adventure,scores={death=51..},tag=!cheater] {"color":"yellow","text":"TheAl_T joined the game\n","extra":[{"color":"white","text":"<"},{"color":"gold","text":"TheAl_T"},{"color":"white","text":"> You cheater! =D\n"},"TheAl_T left the game"]}
