@@ -4,7 +4,6 @@
 # - first_click
 
 
-# ToDo play a sound
 clear @p
 execute as @e[type=armor_stand,name=Phill] at @s if block ~ ~ ~ cyan_wool run function kk:fill_r
 

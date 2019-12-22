@@ -117,12 +117,12 @@ class Release:
 
     @staticmethod
     @timer(message="Copying resources")
-    def copy_resources() -> None:
+    def copy_resources(prepare: str) -> None:
         os.replace("resources.zip", BUILD_FOLDER / "resources.zip")
 
         shutil.rmtree(SAVE_FOLDER / GAME_FOLDER.name)
 
-        with ZipFile(BUILD_FOLDER / f"{GAME_FOLDER.name}Develop.zip", "r", compresslevel=9) as zf:
+        with ZipFile(BUILD_FOLDER / f"{GAME_FOLDER.name}{prepare}.zip", "r", compresslevel=9) as zf:
             zf.extractall(SAVE_FOLDER)
 
 
@@ -135,7 +135,7 @@ def main():
     Release.assemble("Develop")
     Release.assemble("Realms", assets=False)
 
-    Release.copy_resources()
+    Release.copy_resources("Develop")
 
     print("\nAll done!")
 
