@@ -1,6 +1,6 @@
 ﻿{
     "ambientocclusion": false,
-    "textures": {"particle": "block/hopper_top", "0": "block/light_blue_wool"},
+    "textures": {"particle": "block/destroy_stage_0", "0": "block/light_blue_wool"},
     "elements": [
         {
             "name": "main",
