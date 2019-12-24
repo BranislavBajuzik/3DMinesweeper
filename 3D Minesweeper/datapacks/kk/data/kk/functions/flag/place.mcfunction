@@ -1,11 +1,11 @@
 # Called by
-# - flag/events
+# - flag/events as,at @e[type=armor_stand,name=Flag]
 
-execute at @e[type=armor_stand,name=Flag] run setblock ~ ~30 ~ purple_wool
-tag @p remove flag
-execute as @e[type=armor_stand,name=Flag] at @s if block ~ ~ ~ brown_wool run tag @p add flag
-execute as @p[tag=flag] run scoreboard players add @p kMines 1
-execute as @p[tag=!flag] run scoreboard players add @p badMines 1
-scoreboard players remove @p fakeMines 1
-execute at @e[type=armor_stand,name=Flag] run setblock ~ ~ ~-18 air
-kill @e[type=armor_stand,name=Flag]
+setblock ~ ~30 ~ purple_wool
+tag @a remove flag
+execute if block ~ ~ ~ brown_wool run tag @a add flag
+execute as @p[tag=flag] run scoreboard players add @a kMines 1
+execute as @p[tag=!flag] run scoreboard players add @a badMines 1
+scoreboard players remove @a fakeMines 1
+setblock ~ ~ ~-18 air
+kill @s

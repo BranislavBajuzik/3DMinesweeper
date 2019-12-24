@@ -1,5 +1,5 @@
 # Called by
-# - main
+# - main at,as @e[type=item]
 
 scoreboard players add @s glass 0
 scoreboard players set @s[nbt={Item:{id:"minecraft:white_wool"}}] glass 1

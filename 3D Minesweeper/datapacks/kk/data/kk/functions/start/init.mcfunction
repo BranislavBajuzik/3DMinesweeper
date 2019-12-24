@@ -1,16 +1,16 @@
 # Called by
-# - start/ez
-# - start/medium
-# - start/hard
+# - start/ez as player
+# - start/medium as player
+# - start/hard as player
 
-gamemode adventure @a
+#gamemode adventure @a
 clear @a
-teleport @p 0 108.0 0
+#teleport @a 0 108.0 0
 
-scoreboard players set @p kMines 0
-scoreboard players set @p badMines 0
-tag @p remove generated
+scoreboard players set @a kMines 0
+scoreboard players set @a badMines 0
+tag @a remove generated
 kill @e[type=armor_stand,name=NewPhill]
 kill @e[type=armor_stand,name=Phill]
 
-function kk:generate
+function kk:generate/setup

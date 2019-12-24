@@ -1,5 +1,5 @@
 # Called by
-# - main
+# - main as,at player
 # - 3 48 -16
 
 fill ~ ~-1 ~ ~ ~-1 ~ barrier replace air

@@ -1,10 +1,13 @@
 # Called by
-# - main
-# - tutorial/10
+# - main as player
+# - tutorial/10 as server
 
-clear @p
-kill @e[type=area_effect_cloud,tag=tutorial]
-scoreboard players set @p fakeMines 0
+clear @a
+scoreboard players set @a fakeMines 0
 scoreboard objectives setdisplay sidebar fakeMines
+effect clear @a invisibility
+
+kill @e[type=area_effect_cloud,tag=tutorial]
+# Turn off tutorial clock
 data merge block 15 48 -4 {auto:0b}
-function kk:items/give_basic
+execute as @a run function kk:items/give_basic
