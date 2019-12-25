@@ -1,5 +1,5 @@
 # Called by
-# - 2 48 -4
+# - 2 48 -4 as server
 
 clear @a
 scoreboard players set @a mode -1

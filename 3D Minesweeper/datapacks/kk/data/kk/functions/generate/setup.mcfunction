@@ -1,6 +1,6 @@
 # Called by
 # - start/init as player
-# - first_click as player
+# - first_click as server
 
 # Ensure no duplicate bombs
 execute as @e[type=area_effect_cloud,tag=Mine] at @s positioned ~-0.5 ~-0.5 ~-0.5 store result score @s boolBool if entity @e[dx=0.5,dy=0.5,dz=0.5]

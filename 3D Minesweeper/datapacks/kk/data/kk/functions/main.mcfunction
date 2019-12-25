@@ -28,21 +28,14 @@ execute as @a[x=-6.5,y=102,z=-6.5,dx=16,dy=10,dz=16] at @s run function kk:fly_b
 # Give items
 execute as @a[scores={mode=0..},tag=items,nbt=!{SelectedItem:{id:"minecraft:written_book"}}] run function kk:items/give
 
-# Register items
-execute as @e[type=item] at @s run function kk:items/register
-
-# Clicks
-execute as @a[scores={button=1..}] at @s run function kk:flag/button
-execute at @e[scores={glass=1}] run summon armor_stand ~ ~-30 ~ {Marker:1,Invisible:1,CustomName:"\"Phill\"",NoGravity:1}
-scoreboard players set @a[tag=!generated] timer 0
-execute at @p[tag=generated] as @e[scores={glass=1}] run function kk:click
-execute at @p[tag=!generated] as @e[scores={glass=1}] run function kk:first_click
+# Events
+function kk:events
 
 # Timer
 scoreboard players add @a timer 1
 scoreboard players operation @a time = @a timer
 scoreboard players operation @a time /= twenty constant
-title @a[scores={mode=0..2}] actionbar ["Time: ",{"score":{"objective":"time","name":"@s"}}," seconds"]
+title @a[scores={mode=0..2}] actionbar ["Time: ",{"score":{"objective":"time","name":"@p"}}," seconds"]
 
 # Endgame
 execute as @p[scores={badMines=..0,kMines=170..,mode=0}] run function kk:endgame

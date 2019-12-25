@@ -1,5 +1,5 @@
 # Called by
-# - 1 51 -4
+# - 1 51 -4 as server
 
 title @a title {"color":"dark_red","text":"You lost!"}
 title @a[scores={kMines=..0}] subtitle {"color":"dark_red","text":"You have found ","extra":[{"color":"dark_blue","text":"0"}," mines"]}

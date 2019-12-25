@@ -3,9 +3,9 @@
 # - start/medium as player
 # - start/hard as player
 
-#gamemode adventure @a
+gamemode adventure @a
 clear @a
-#teleport @a 0 108.0 0
+teleport @a 0 108.0 0
 
 scoreboard players set @a kMines 0
 scoreboard players set @a badMines 0
