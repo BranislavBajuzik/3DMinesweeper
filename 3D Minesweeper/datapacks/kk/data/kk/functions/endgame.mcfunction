@@ -2,7 +2,7 @@
 # - main as player
 
 clear @a
-scoreboard players set @a mode -1
+scoreboard players set @e[type=area_effect_cloud,tag=Master,limit=1] mode -1
 execute at @a run playsound minecraft:entity.player.levelup master @s
 
 execute as @a run scoreboard players operation @s lastTime = @s time

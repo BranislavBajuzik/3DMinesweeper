@@ -3,7 +3,7 @@
 
 clear @a
 teleport @a 0 108.0 0
-scoreboard players set @a mode -2
+scoreboard players set @e[type=area_effect_cloud,tag=Master,limit=1] mode -2
 scoreboard objectives setdisplay sidebar
 effect give @a invisibility 69420 1 true
 

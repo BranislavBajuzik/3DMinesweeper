@@ -1,13 +1,9 @@
 # Called by
-# - main as player
+# - main as player[scores={death=50}]
 
 clear @s
 difficulty peaceful
 gamemode adventure @s
-
-scoreboard players set @s mode -1
-scoreboard players set @s flyBool 0
-scoreboard players set @s boolBool 0
 
 tag @s add items
 function kk:items/give_basic

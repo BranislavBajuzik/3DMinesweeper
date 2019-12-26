@@ -3,7 +3,7 @@
 
 clear @a
 teleport @a 0 108.0 0
-scoreboard players set @a mode 3
+scoreboard players set @e[type=area_effect_cloud,tag=Master,limit=1] mode 3
 scoreboard players set @a fillBool 0
 scoreboard players set @a fakeMines 9001
 kill @e[type=armor_stand,name=Phill]

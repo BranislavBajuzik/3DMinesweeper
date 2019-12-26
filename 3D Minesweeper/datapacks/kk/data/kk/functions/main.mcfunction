@@ -26,7 +26,7 @@ execute as @a[scores={shift=1..}] at @s run function kk:shift
 execute as @a[x=-6.5,y=102,z=-6.5,dx=16,dy=10,dz=16] at @s run function kk:fly_barrier
 
 # Give items
-execute as @a[scores={mode=0..},tag=items,nbt=!{SelectedItem:{id:"minecraft:written_book"}}] run function kk:items/give
+execute if entity @e[type=area_effect_cloud,tag=Master,limit=1,scores={mode=0..}] as @a[tag=items,nbt=!{SelectedItem:{id:"minecraft:written_book"}}] run function kk:items/give
 
 # Events
 function kk:events
@@ -35,11 +35,11 @@ function kk:events
 scoreboard players add @a timer 1
 scoreboard players operation @a time = @a timer
 scoreboard players operation @a time /= twenty constant
-title @a[scores={mode=0..2}] actionbar ["Time: ",{"score":{"objective":"time","name":"@p"}}," seconds"]
+execute if entity @e[type=area_effect_cloud,tag=Master,limit=1,scores={mode=0..2}] run title @a actionbar ["Time: ",{"score":{"objective":"time","name":"@p"}}," seconds"]
 
 # Endgame
-execute as @p[scores={badMines=..0,kMines=170..,mode=0}] run function kk:endgame
-execute as @p[scores={badMines=..0,kMines=210..,mode=1}] run function kk:endgame
-execute as @p[scores={badMines=..0,kMines=280..,mode=2}] run function kk:endgame
+execute if entity @e[type=area_effect_cloud,tag=Master,limit=1,scores={mode=0}] as @p[scores={badMines=..0,kMines=170..}] run function kk:endgame
+execute if entity @e[type=area_effect_cloud,tag=Master,limit=1,scores={mode=1}] as @p[scores={badMines=..0,kMines=210..}] run function kk:endgame
+execute if entity @e[type=area_effect_cloud,tag=Master,limit=1,scores={mode=2}] as @p[scores={badMines=..0,kMines=280..}] run function kk:endgame
 
-execute as @p[scores={mode=0..}] run kill @e[type=item]
+execute if entity @e[type=area_effect_cloud,tag=Master,limit=1,scores={mode=0..}] run kill @e[type=item]
