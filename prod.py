@@ -11,15 +11,16 @@ from contextlib import ContextDecorator, suppress
 
 
 SAVE_FOLDER = Path(os.environ["appdata"], ".minecraft", "saves")
+# SAVE_FOLDER = Path("/", "home", "thealt", ".minecraft", "saves")
 GAME_FOLDER = Path("3D Minesweeper")
 BUILD_FOLDER = Path("build")
 BUILD_FOLDER.mkdir(parents=True, exist_ok=True)
 
 
-def walker(path, **kwargs) -> Generator[Tuple[str, str], Path, None]:
+def walker(path, **kwargs) -> Generator[Tuple[Path, Path], Path, None]:
     for root, dirs, files in os.walk(path, **kwargs):
         for file in chain(files, dirs):
-            yield root, file
+            yield Path(root), Path(file)
 
 
 class timer(ContextDecorator):
@@ -42,6 +43,10 @@ class timer(ContextDecorator):
 
 class Release:
     __zip: ZipFile
+
+    PUBLIC = "Public"
+    DEVELOP = "Develop"
+    REALMS = "Realms"
 
     def __init__(self, typ):
         self.typ = typ
@@ -70,7 +75,7 @@ class Release:
     def __make_base_archive(self) -> "Release":
         print(" - Creating base archive")
         for root, file in walker(GAME_FOLDER):
-            self.__zip.write(Path(root, file))
+            self.__zip.write(root / file)
 
         return self
 
@@ -84,7 +89,6 @@ class Release:
     def __add_mixin(self) -> "Release":
         print(" - Adding mixin")
         for root, file in walker(Path("Mixin", self.typ)):
-            root = Path(root)
             path = root / file
 
             if path.is_dir():
@@ -102,7 +106,6 @@ class Release:
     def make_resources() -> None:
         with ZipFile("resources.zip", "w", compresslevel=9) as target:
             for root, file in walker(Path("resources")):
-                root = Path(root)
                 target.write(root / file, arcname=Path(*root.parts[1:], file))
 
     @staticmethod
@@ -120,7 +123,9 @@ class Release:
     def copy_resources(prepare: str) -> None:
         os.replace("resources.zip", BUILD_FOLDER / "resources.zip")
 
-        shutil.rmtree(SAVE_FOLDER / GAME_FOLDER.name)
+        target_path = SAVE_FOLDER / GAME_FOLDER.name
+        if target_path.exists():
+            shutil.rmtree(target_path)
 
         with ZipFile(BUILD_FOLDER / f"{GAME_FOLDER.name}{prepare}.zip", "r", compresslevel=9) as zf:
             zf.extractall(SAVE_FOLDER)
@@ -131,11 +136,11 @@ def main():
     Release.make_resources()
     Release.clean_level()
 
-    Release.assemble("Public")
-    Release.assemble("Develop")
-    Release.assemble("Realms", assets=False)
+    Release.assemble(Release.PUBLIC)
+    Release.assemble(Release.DEVELOP)
+    Release.assemble(Release.REALMS, assets=False)
 
-    Release.copy_resources("Develop")
+    Release.copy_resources(Release.DEVELOP)
 
     print("\nAll done!")
 
