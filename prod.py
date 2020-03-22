@@ -10,8 +10,7 @@ from typing import Generator, Tuple
 from contextlib import ContextDecorator, suppress
 
 
-SAVE_FOLDER = Path(os.environ["appdata"], ".minecraft", "saves")
-# SAVE_FOLDER = Path("/", "home", "thealt", ".minecraft", "saves")
+SAVE_FOLDER = Path(os.environ.get("appdata", "~"), ".minecraft", "saves").expanduser()
 GAME_FOLDER = Path("3D Minesweeper")
 BUILD_FOLDER = Path("build")
 BUILD_FOLDER.mkdir(parents=True, exist_ok=True)
@@ -124,7 +123,7 @@ class Release:
         os.replace("resources.zip", BUILD_FOLDER / "resources.zip")
 
         target_path = SAVE_FOLDER / GAME_FOLDER.name
-        if target_path.exists():
+        if target_path.is_dir():
             shutil.rmtree(target_path)
 
         with ZipFile(BUILD_FOLDER / f"{GAME_FOLDER.name}{prepare}.zip", "r", compresslevel=9) as zf:
