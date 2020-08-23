@@ -133,7 +133,7 @@ class Release:
 @timer(message="Starting build\n")
 def main():
     Release.make_resources()
-    # Release.clean_level()
+    Release.clean_level()
 
     Release.assemble(Release.PUBLIC)
     Release.assemble(Release.DEVELOP)
