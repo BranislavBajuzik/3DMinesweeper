@@ -16,8 +16,8 @@ BUILD_FOLDER = Path("build")
 BUILD_FOLDER.mkdir(parents=True, exist_ok=True)
 
 
-def walker(path, **kwargs) -> Generator[Tuple[Path, Path], Path, None]:
-    for root, dirs, files in os.walk(path, **kwargs):
+def walker(path: Path) -> Generator[Tuple[Path, Path], Path, None]:
+    for root, dirs, files in os.walk(path):
         for file in chain(files, dirs):
             yield Path(root), Path(file)
 
@@ -47,7 +47,7 @@ class Release:
     DEVELOP = "Develop"
     REALMS = "Realms"
 
-    def __init__(self, typ):
+    def __init__(self, typ: str):
         self.typ = typ
 
     def __enter__(self):
@@ -92,7 +92,7 @@ class Release:
 
             if path.is_dir():
                 try:
-                    self.__zip.getinfo(path)
+                    self.__zip.getinfo(str(path))
                 except KeyError:
                     continue
 
@@ -141,7 +141,7 @@ def main():
 
     Release.copy_resources(Release.DEVELOP)
 
-    print("\nAll done!")
+    print("\nTotal:")
 
 
 if __name__ == "__main__":
