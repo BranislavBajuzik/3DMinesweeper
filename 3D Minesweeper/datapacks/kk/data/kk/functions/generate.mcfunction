@@ -4,14 +4,14 @@
 
 # Ensure no duplicate bombs
 execute as @e[type=area_effect_cloud,tag=Mine] at @s positioned ~-0.5 ~-0.5 ~-0.5 store result score @s boolBool if entity @e[dx=0.5,dy=0.5,dz=0.5]
-execute at @e[x=-22,y=100,z=-39,dx=45,dy=15,dz=30,scores={boolBool=..1}] run setblock ~ ~-1 ~ air
+execute at @e[x=-22,y=100,z=-79,dx=45,dy=15,dz=30,scores={boolBool=..1}] run setblock ~ ~-1 ~ air
 
-spreadplayers 0 -72 2 22 false @e[x=-21.5,y=100,z=-38.5,dx=45,dy=15,dz=30,scores={boolBool=2..}]
-execute at @e[x=-22,y=100,z=-39,dx=45,dy=15,dz=30] run setblock ~ ~-1 ~ glass
+spreadplayers 0 -72 2 22 false @e[x=-22,y=100,z=-79,dx=45,dy=15,dz=30,scores={boolBool=2..}]
+execute at @e[x=-22,y=100,z=-79,dx=45,dy=15,dz=30] run setblock ~ ~-1 ~ glass
 
 # REEEE if still duplicate bombs
 execute as @e[type=area_effect_cloud,tag=Mine] at @s positioned ~-0.5 ~-0.5 ~-0.5 store result score @s boolBool if entity @e[dx=0.5,dy=0.5,dz=0.5]
-execute as @e[x=-22,y=100,z=-39,dx=45,dy=15,dz=30,scores={boolBool=2..}] at @s run tellraw @p ["There was an error while generating the board. Please start the game again"]
+execute as @e[x=-22,y=100,z=-79,dx=45,dy=15,dz=30,scores={boolBool=2..},limit=1] at @s run tellraw @p ["There was an error while generating the board. Please start the game again."]
 
 # Spawn board
 fill -8 100 -8 8 116 8 white_wool hollow
