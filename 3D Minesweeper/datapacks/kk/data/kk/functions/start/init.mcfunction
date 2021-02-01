@@ -7,6 +7,9 @@ gamemode adventure @a
 clear @a
 teleport @p 0 108.0 0
 
+effect clear @a night_vision
+function kk:effects
+
 scoreboard players set @p kMines 0
 scoreboard players set @p badMines 0
 tag @p remove generated
