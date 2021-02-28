@@ -13,7 +13,8 @@ from contextlib import ContextDecorator, suppress
 SAVE_FOLDER = Path(os.environ.get("appdata", "~"), ".minecraft", "saves").expanduser()
 GAME_FOLDER = Path("3D Minesweeper")
 BUILD_FOLDER = Path("build")
-BUILD_FOLDER.mkdir(parents=True, exist_ok=True)
+shutil.rmtree(BUILD_FOLDER, ignore_errors=True)
+BUILD_FOLDER.mkdir(parents=True)
 
 
 def walker(path: Path) -> Generator[Tuple[Path, Path], Path, None]:
