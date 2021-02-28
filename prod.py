@@ -140,7 +140,7 @@ def main():
     Release.assemble(Release.DEVELOP)
     Release.assemble(Release.REALMS, assets=False)
 
-    Release.copy_resources(Release.PUBLIC)
+    Release.copy_resources(Release.DEVELOP)
 
     print("\nTotal:")
 
