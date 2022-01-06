@@ -30,6 +30,7 @@ gamemode
 gamerule
 give
 help
+item
 kick
 kill
 list
@@ -44,7 +45,6 @@ playsound
 publish
 recipe
 reload
-replaceitem
 save-all
 save-off
 save-on

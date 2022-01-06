@@ -20,3 +20,5 @@ execute positioned ~ ~-18 ~ if block ~ ~ ~ stone_button[face=floor] if block ~ ~
 # Execute the events
 execute as @e[type=armor_stand,name=Flag] run function kk:flag/place
 execute as @e[type=armor_stand,name=Unflag] run function kk:flag/remove
+
+clear @a
