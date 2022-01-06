@@ -27,7 +27,7 @@ tag @p[scores={shift=..0}] remove shift
 execute as @p[scores={shift=1..}] at @s run function kk:shift
 
 # Fly
-execute as @p[x=-6.5,y=102,z=-6.5,dx=16,dy=10,dz=16] at @s run function kk:fly_barrier
+execute as @p[x=-7,y=102,z=-7,dx=15,dy=10,dz=15] at @s run function kk:fly_barrier
 
 # Give items
 execute as @p[scores={mode=0..},tag=items,nbt=!{SelectedItem:{id:"minecraft:written_book"}}] run function kk:items/give

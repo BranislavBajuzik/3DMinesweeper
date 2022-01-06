@@ -17,5 +17,6 @@ title @p subtitle [{"color":"dark_blue","text":"By "},{"color":"gold","text":"Th
 # Welcome message
 summon area_effect_cloud 0.5 48.5 -9.5 {Age:-10,Particle:"block air",Tags:["delay2"]}
 
+# Restart look-to-fly clock
 kill @e[type=area_effect_cloud,tag=fly]
 data merge block 0 48 -13 {auto:1b}

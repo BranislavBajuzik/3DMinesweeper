@@ -1,6 +1,6 @@
 # Called by
 # - main
-# - 3 48 -16
+# - fly
 
 fill ~ ~-1 ~ ~ ~-1 ~ white_stained_glass replace air
 fill ~-1 ~-2 ~-1 ~1 ~-2 ~1 air replace white_stained_glass
