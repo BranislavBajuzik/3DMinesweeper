@@ -1,3 +1,8 @@
-build/
+# Tooling files
 .idea/
-/venv/
+venv/
+.mypy_cache/
+
+# Minecraft files
+build/
+resources.zip

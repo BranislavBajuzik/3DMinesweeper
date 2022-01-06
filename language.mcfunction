@@ -1,3 +1,6 @@
+File | Settings | Editor | File Types - Add/Edit for Windows and Linux
+IntelliJ IDEA | Preferences | Editor | File Types - Add/Edit for macOS
+
 Line comment: # (only at line start)
 Number postfixes: bdsf
 Support paired braces, brackets, string escapes
@@ -75,27 +78,27 @@ worldborder
 xp
 
 #2
-advancements‌
+advancements
 as
 at
-distance‌
+distance
 dx
 dy
 dz
-gamemode‌
-level‌
+gamemode
+level
 limit
 name
-nbt‌
-predicate‌
+nbt
+predicate
 run
 scores
-sort‌
+sort
 type
 x
-x_rotation‌
+x_rotation
 y
-y_rotation‌
+y_rotation
 z
 
 #3
