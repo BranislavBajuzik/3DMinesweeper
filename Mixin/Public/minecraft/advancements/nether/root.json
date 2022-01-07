@@ -1,22 +1,8 @@
 {
-  "display": {
-    "icon": {
-      "item": "minecraft:air"
-    },
-    "title": {
-      "text": ""
-    },
-    "description": {
-      "text": ""
+    "parent": "totally_not_possible",
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
     }
-  },
-  "criteria": {
-    "k": {
-      "trigger": "minecraft:impossible",
-      "conditions": {}
-    }
-  },
-  "requirements": [
-    ["k"]
-  ]
 }
