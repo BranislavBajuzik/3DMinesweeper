@@ -15,7 +15,7 @@ execute as @e[x=-22,y=100,z=-79,dx=45,dy=15,dz=30,scores={boolBool=2..},limit=1]
 
 # Spawn board
 fill -8 100 -8 8 116 8 white_wool hollow
-execute as @p[x=-7,y=102,z=-7,dx=15,dy=10,dz=15] at @s run function kk:fly_barrier
+function kk:fly/platform
 setblock -9 68 -27 redstone_block
 setblock -9 68 -9 redstone_block
 

@@ -1,5 +1,5 @@
 # Called by
-# - main
+# - tick/main
 
 item replace entity @s hotbar.0 with stone_button{HideFlags:25,CanPlaceOn:["minecraft:white_wool", "minecraft:purple_wool"],Enchantments:[{id:"minecraft:silk_touch",lvl:1}],display:{Name:"{\"text\":\"[Punch] -> Reveal || [Use] -> Flag/Unflag\",\"color\":\"white\",\"italic\":\"false\"}"},CanDestroy:["minecraft:white_wool"]}
 item replace entity @s hotbar.1 with stone_button{HideFlags:25,CanPlaceOn:["minecraft:white_wool", "minecraft:purple_wool"],Enchantments:[{id:"minecraft:silk_touch",lvl:1}],display:{Name:"{\"text\":\"[Punch] -> Reveal || [Use] -> Flag/Unflag\",\"color\":\"white\",\"italic\":\"false\"}"},CanDestroy:["minecraft:white_wool"]}

@@ -1,5 +1,5 @@
 # Called by
-# - main
+# - tick/main
 
 # Cleanup player
 clear @p

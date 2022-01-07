@@ -1,5 +1,5 @@
 # Called by
-# - main
+# - tick/main
 
 scoreboard players operation @s lastTime = @s time
 scoreboard players set @s mode -1

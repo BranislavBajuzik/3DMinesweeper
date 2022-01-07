@@ -1,5 +1,5 @@
 # Called by
-# - main
+# - tick/main
 
 clear @p
 teleport @p 0 108.0 0
