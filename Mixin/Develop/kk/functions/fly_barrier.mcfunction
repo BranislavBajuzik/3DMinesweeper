@@ -1,6 +1,7 @@
 # Called by
 # - main
 # - fly
+# - generate
 
 fill ~ ~-1 ~ ~ ~-1 ~ white_stained_glass replace air
 fill ~-1 ~-2 ~-1 ~1 ~-2 ~1 air replace white_stained_glass
