@@ -1,14 +1,16 @@
+from __future__ import annotations
+
 import os
 import shutil
-
-from nbt import nbt
-from time import time
-from pathlib import Path
-from zipfile import ZipFile
+from contextlib import ContextDecorator
 from itertools import chain
-from typing import Generator, Tuple
-from contextlib import ContextDecorator, suppress
+from pathlib import Path
+from time import time
+from types import TracebackType
+from typing import Generator, Optional, Tuple, Type
+from zipfile import ZipFile
 
+from nbt import nbt  # type: ignore
 
 SAVE_FOLDER = Path(os.environ.get("appdata", "~"), ".minecraft", "saves").expanduser()
 GAME_FOLDER = Path("3D Minesweeper")
@@ -29,20 +31,20 @@ class timer(ContextDecorator):
     def __init__(self, *, message: str = "Starting"):
         self.__message = message
 
-    def __enter__(self):
+    def __enter__(self) -> timer:
         print(self.__message)
         self.__time = time()
 
         return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+    def __exit__(
+        self, exc_type: Optional[Type[BaseException]], exc_val: Optional[BaseException], exc_tb: Optional[TracebackType]
+    ) -> None:
         print(f" Done in {time()-self.__time:.2f}s")
-
-        return False
 
 
 class Release:
-    __zip: ZipFile
+    _zip: ZipFile
 
     PUBLIC = "Public"
     DEVELOP = "Develop"
@@ -51,55 +53,63 @@ class Release:
     def __init__(self, typ: str):
         self.typ = typ
 
-    def __enter__(self):
+    def __enter__(self) -> Release:
         print(f" - Type: {self.typ}")
-        self.__zip = ZipFile(BUILD_FOLDER / f"{GAME_FOLDER.name}{self.typ}.zip", "w", compresslevel=9)
+        self._zip = ZipFile(BUILD_FOLDER / f"{GAME_FOLDER.name}{self.typ}.zip", "w", compresslevel=9)
 
         return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        self.__zip.close()
-
-        return False
+    def __exit__(
+        self, exc_type: Optional[Type[BaseException]], exc_val: Optional[BaseException], exc_tb: Optional[TracebackType]
+    ) -> None:
+        self._zip.close()
 
     @staticmethod
-    def assemble(typ: str, *, assets: bool = True) -> "Release":
+    def assemble(typ: str, *, assets: bool = True) -> Release:
         with timer(message="Assembling Release"), Release(typ) as release:
-            release.__make_base_archive().__add_mixin()
+            release._make_base_archive()
 
             if assets:
-                release.__add_assets()
+                release._add_assets()
 
         return release
 
-    def __make_base_archive(self) -> "Release":
+    def _make_base_archive(self) -> Release:
         print(" - Creating base archive")
+
+        mixin_files = self._add_mixin()
+
         for root, file in walker(GAME_FOLDER):
-            self.__zip.write(root / file)
+            if (target := root / file) not in mixin_files:
+                self._zip.write(target)
 
         return self
 
-    def __add_assets(self) -> "Release":
+    def _add_assets(self) -> Release:
         print(" - Adding assets")
         for asset in ("icon.png", "resources.zip"):
-            self.__zip.write(asset, arcname=GAME_FOLDER / asset)
+            self._zip.write(asset, arcname=GAME_FOLDER / asset)
 
         return self
 
-    def __add_mixin(self) -> "Release":
+    def _add_mixin(self) -> set[Path]:
         print(" - Adding mixin")
+        mixin_files = set()
+
         for root, file in walker(Path("Mixin", self.typ)):
             path = root / file
 
             if path.is_dir():
                 try:
-                    self.__zip.getinfo(str(path))
+                    self._zip.getinfo(str(path))
                 except KeyError:
                     continue
 
-            self.__zip.write(path, arcname=Path(GAME_FOLDER, "datapacks", "kk", "data", *root.parts[2:], file))
+            archive_path = Path(GAME_FOLDER, "datapacks", "kk", "data", *root.parts[2:], file)
+            mixin_files.add(archive_path)
+            self._zip.write(path, arcname=archive_path)
 
-        return self
+        return mixin_files
 
     @staticmethod
     @timer(message="Archiving resources")
@@ -113,31 +123,32 @@ class Release:
     def clean_level() -> None:
         level = nbt.NBTFile(str(GAME_FOLDER / "level.dat"), "rb")
 
-        with suppress(KeyError):
+        if "Player" in level["Data"]:
             del level["Data"]["Player"]
 
-        level.write_file()
+            level.write_file()
 
     @staticmethod
     @timer(message="Copying resources")
-    def copy_resources(prepare: str) -> None:
+    def copy_resources(typ: str) -> None:
+        print(f" - Type: {typ}")
         os.replace("resources.zip", BUILD_FOLDER / "resources.zip")
 
         target_path = SAVE_FOLDER / GAME_FOLDER.name
         if target_path.is_dir():
             shutil.rmtree(target_path)
 
-        with ZipFile(BUILD_FOLDER / f"{GAME_FOLDER.name}{prepare}.zip", "r", compresslevel=9) as zf:
+        with ZipFile(BUILD_FOLDER / f"{GAME_FOLDER.name}{typ}.zip", "r", compresslevel=9) as zf:
             zf.extractall(SAVE_FOLDER)
 
 
 @timer(message="Starting build\n")
-def main():
+def main() -> None:
     Release.make_resources()
     Release.clean_level()
 
-    Release.assemble(Release.PUBLIC)
     Release.assemble(Release.DEVELOP)
+    Release.assemble(Release.PUBLIC)
     Release.assemble(Release.REALMS, assets=False)
 
     Release.copy_resources(Release.DEVELOP)

@@ -1,5 +1,5 @@
 # Called by
-# - main
+# - tick/main
 # - 14 48 -7
 
 clear @p

@@ -1,32 +1,7 @@
 {
-  "parent": "minecraft:recipes/root",
-  "rewards": {
-    "recipes": [
-      "minecraft:andesite"
-    ]
-  },
-  "criteria": {
-    "has_stone": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "minecraft:diorite"
-          }
-        ]
-      }
-    },
-    "has_the_recipe": {
-      "trigger": "minecraft:recipe_unlocked",
-      "conditions": {
-        "recipe": "minecraft:andesite"
-      }
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
     }
-  },
-  "requirements": [
-    [
-      "has_stone",
-      "has_the_recipe"
-    ]
-  ]
 }

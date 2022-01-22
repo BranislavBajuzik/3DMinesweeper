@@ -1,6 +1,7 @@
 # Called by
 # - 13 49 -1
 
+fill -8 100 -8 8 116 8 white_wool hollow
 fill -2 110 -8 -8 116 -5 andesite replace white_wool
 fill -3 111 -8 -8 116 -6 cyan_wool replace andesite
 clone 40 103 -9 38 105 -9 -5 111 -8

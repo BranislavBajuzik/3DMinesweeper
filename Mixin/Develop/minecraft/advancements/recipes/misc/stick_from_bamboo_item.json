@@ -1,32 +1,7 @@
 {
-  "parent": "minecraft:recipes/root",
-  "rewards": {
-    "recipes": [
-      "minecraft:stick_from_bamboo_item"
-    ]
-  },
-  "criteria": {
-    "has_bamboo": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "minecraft:bamboo"
-          }
-        ]
-      }
-    },
-    "has_the_recipe": {
-      "trigger": "minecraft:recipe_unlocked",
-      "conditions": {
-        "recipe": "minecraft:stick_from_bamboo_item"
-      }
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
     }
-  },
-  "requirements": [
-    [
-      "has_bamboo",
-      "has_the_recipe"
-    ]
-  ]
 }

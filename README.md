@@ -6,4 +6,3 @@ A Minecraft map
 ### [Speedruns](https://www.speedrun.com/3d_minesweeper_in_minecraft)
 
 ![The map](https://static.planetminecraft.com/files/resource_media/screenshot/1517/kk8852035_lrg.jpg)
-

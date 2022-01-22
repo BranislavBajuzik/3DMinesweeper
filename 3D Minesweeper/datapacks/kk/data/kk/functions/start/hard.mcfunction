@@ -1,5 +1,5 @@
 # Called by
-# - main
+# - tick/main
 
 teleport @e[type=area_effect_cloud,tag=Mine] 0.5 253.0 0.5
 scoreboard players set @p mode 2

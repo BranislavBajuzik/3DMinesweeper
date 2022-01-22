@@ -1,5 +1,5 @@
 # Called by
-# - main
+# - tick/main
 # - tutorial/10
 
 clear @p

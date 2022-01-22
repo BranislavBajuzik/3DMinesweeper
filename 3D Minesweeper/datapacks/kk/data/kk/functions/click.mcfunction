@@ -1,5 +1,5 @@
 # Called by
-# - main
+# - tick/main
 
 clear @p
 execute at @e[type=armor_stand,name=Phill] run setblock ~ ~ ~-18 air

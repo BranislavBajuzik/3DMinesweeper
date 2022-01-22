@@ -1,32 +1,7 @@
 {
-  "parent": "minecraft:recipes/root",
-  "rewards": {
-    "recipes": [
-      "minecraft:loom"
-    ]
-  },
-  "criteria": {
-    "has_string": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "minecraft:string"
-          }
-        ]
-      }
-    },
-    "has_the_recipe": {
-      "trigger": "minecraft:recipe_unlocked",
-      "conditions": {
-        "recipe": "minecraft:loom"
-      }
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
     }
-  },
-  "requirements": [
-    [
-      "has_string",
-      "has_the_recipe"
-    ]
-  ]
 }
